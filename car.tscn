@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtebpl86mvai"]
+
+[ext_resource type="Script" path="res://car.gd" id="1_2x5nf"]
+[ext_resource type="Texture2D" uid="uid://c03royu7x6vyg" path="res://truck.png" id="1_yp0uo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gyyku"]
+radius = 92.0
+height = 300.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_2x5nf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gyyku")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_gyyku")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_yp0uo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)

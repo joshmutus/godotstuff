@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp4ln6odug5dw"]
+
+[ext_resource type="Texture2D" uid="uid://jrhs2ddkk872" path="res://tree.png" id="1_wl3jh"]
+[ext_resource type="PackedScene" uid="uid://dtebpl86mvai" path="res://car.tscn" id="2_n1xu7"]
+
+[node name="world" type="Node2D"]
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(492, 371)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree" type="Sprite2D" parent="Tree"]
+position = Vector2(492, 371)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree" type="Sprite2D" parent="Tree/Tree"]
+position = Vector2(-662, 341)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree" type="Sprite2D" parent="Tree/Tree/Tree"]
+position = Vector2(492, 371)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree" type="Sprite2D" parent="Tree/Tree/Tree/Tree"]
+position = Vector2(-1286, -95)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree" type="Sprite2D" parent="Tree/Tree/Tree/Tree/Tree"]
+position = Vector2(218, -1019)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree2" type="Sprite2D" parent="."]
+position = Vector2(1168, 111)
+texture = ExtResource("1_wl3jh")
+
+[node name="Tree3" type="Sprite2D" parent="."]
+position = Vector2(594, 11)
+texture = ExtResource("1_wl3jh")
+
+[node name="car" parent="." instance=ExtResource("2_n1xu7")]
+position = Vector2(236, 162)
