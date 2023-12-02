@@ -10,11 +10,8 @@ var max_speed_reverse = 250
 var slip_speed = 400
 var traction_fast = 0.0
 var traction_slow = 0.8
-
 var steer_direction
-
 var acceleration = Vector2.ZERO
-
 
 func _process(delta):
 	acceleration = Vector2.ZERO
@@ -38,18 +35,21 @@ func get_input():
 		turn += 1 
 	if Input.is_action_pressed("steer_left"):
 		turn -= 1
-	steer_direction = turn*deg_to_rad(steering_angle)
+		
+	steer_direction = turn * deg_to_rad(steering_angle)
+	
 	if Input.is_action_pressed("gas"):
 		velocity = transform.x * engine_power
 	if Input.is_action_pressed("brake"):
 		acceleration = transform.x * braking
+
 func lin_interp(num1, num2):
-	return (num1+num2)/2		
+	return (num1 + num2) / 2		
 		
 func calculate_steering(delta):
-	var rear_wheel = position - transform.x*wheel_base/2
-	var front_wheel = position + transform.x*wheel_base/2
-	rear_wheel += velocity*delta
+	var rear_wheel = position - transform.x * wheel_base/2
+	var front_wheel = position + transform.x * wheel_base/2
+	rear_wheel += velocity * delta
 	front_wheel += velocity.rotated(steer_direction) * delta
 	var new_heading = (front_wheel - rear_wheel).normalized()
 	var traction = traction_slow
@@ -59,12 +59,12 @@ func calculate_steering(delta):
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		#velocity = new_heading*velocity.length()
-		velocity = velocity.lerp(new_heading*velocity.length(), traction)
-		print(new_heading*velocity.length() - velocity)
+		velocity = velocity.lerp(new_heading * velocity.length(), traction)
+		print(new_heading * velocity.length() - velocity)
 	if d < 0:
-		velocity = -new_heading*min(velocity.length(), max_speed_reverse)		
+		velocity = -new_heading * min(velocity.length(), max_speed_reverse)		
 	rotation = new_heading.angle()
 		
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	pass # Replace with function body.
