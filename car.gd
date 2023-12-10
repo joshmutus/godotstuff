@@ -45,6 +45,9 @@ func get_input():
 		turn -= 1
 
 	steer_direction = turn * deg_to_rad(steering_angle)
+	# %fw_rect.
+	%fw_rect.pivot_offset = %fw_rect.size / 2
+	%fw_rect.rotation = steer_direction
 
 	if Input.is_action_pressed("gas"):
 		velocity = transform.x * engine_power
