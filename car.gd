@@ -8,12 +8,10 @@ var drag = -0.001
 var braking = -450
 var max_speed_reverse = 250
 var slip_speed = 400
-var traction_fast = 0.0
+var traction_fast = 0.2
 var traction_slow = 0.8
 var steer_direction
 var acceleration = Vector2.ZERO
-
-var surfaces = {0: "grass", 1: "asphalt", 2: "dirt", 3: "mud"}
 
 
 func _process(delta):
