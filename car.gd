@@ -25,9 +25,10 @@ func _process(delta):
 
 
 func apply_friction():
-	for i in get_slide_collision_count():
-		var col = get_slide_collision(i)
-		print(col.get_collider().name)
+	print(%racing_terrain.world_to_ma)
+	# for i in get_slide_collision_count():
+	# 	var col = get_slide_collision(i)
+	# 	print("collision with: ", col.get_property_list())
 	if velocity.length() < 10:
 		velocity = Vector2.ZERO
 	var friction_force = velocity * friction
@@ -68,12 +69,12 @@ func calculate_steering(delta):
 	if velocity.length() > slip_speed:
 		%fw_rect.color = Color(1.0, 0.0, 0.0, 1.0)
 		traction = traction_fast
-		print("slipping traction: ", traction)
+		# print("slipping traction: ", traction)
 	var d = new_heading.dot(velocity.normalized())
 	if d > 0:
 		# velocity = new_heading*velocity.length()
 		velocity = velocity.lerp(new_heading * velocity.length(), traction)
-		print(rad_to_deg(new_heading.angle()), new_heading * velocity.length() - velocity)
+		# print(rad_to_deg(new_heading.angle()), new_heading * velocity.length() - velocity)
 	if d < 0:
 		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 	rotation = new_heading.angle()
