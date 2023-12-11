@@ -18,18 +18,17 @@ func _process(delta):
 	acceleration = Vector2.ZERO
 	get_input()
 	apply_friction()
-	print("velocity, ", velocity.length())
 	calculate_steering(delta)
 	velocity += acceleration * delta
+
 	move_and_slide()
 
 
 func apply_friction():
-	print(%racing_terrain.world_to_ma)
 	# for i in get_slide_collision_count():
 	# 	var col = get_slide_collision(i)
 	# 	print("collision with: ", col.get_property_list())
-	if velocity.length() < 10:
+	if velocity.length() < 5:
 		velocity = Vector2.ZERO
 	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
@@ -79,6 +78,26 @@ func calculate_steering(delta):
 		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 	rotation = new_heading.angle()
 
+func _on_area_entered():
+	print("foo")
+
+func _physics_process(delta):
+	pass
+	# var default_2d_navigation_map_rid: RID = get_world_2d().get_navigation_map()
+	# if Input.is_action_pressed("world"):
+		# # var space_state = get_world_2d().direct_space_state
+		# print(position, position-Vector2(1,1))
+		# # use global coordinates, not local to node
+		# var query = PhysicsRayQueryParameters2D.create(Vector2(1,1), position)
+		# var result = space_state.intersect_ray(query)
+		# var coll = result["collider"]
+		# print(coll.name, coll.get_type())
+		# breakpoint
+
 
 func _ready():
 	pass  # Replace with function body.
+
+
+func _on_car_area_area_shape_entered(area_rid:RID, area:Area2D, area_shape_index:int, local_shape_index:int):
+	print("entered?")
